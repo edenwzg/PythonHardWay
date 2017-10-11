@@ -13,6 +13,12 @@ git add
 git status
 git commit -m "Describe Text"
 }
+error{
+    SyntaxError: invalid syntax
+        from 写成 form 
+    ValueError: not enough values to unpack (expected 4, got 3)
+        传递参数错误，用于解包的参数变量不足（预期为4个，得到3个）
+}
 python{
     --多行注释第一个"""必须在一行的行首
     --用%r输出\n会按照写出来的方式（或者近似方式）打印，它是用来debug的原始格式。
@@ -24,6 +30,12 @@ python{
     --写成 print "How old are you?" , input() 为什么不行?你觉得可以，但 Python 不这么认为。我唯一能给你的答案是：这样就是不行。
     --python -m pydoc -w atexit   //在当前目录创建atexit.html，生成HTML输出
     --python -m pydoc -p 5000    //启动一个Web服务器监听http://localhost:5000/在线浏览帮助文档
+    --Python 不会一下子将它所有的功能给你，而是让你需要什么就调用什么。这样可以让你的程序保持精简，而后面的程序员看到你的代码的时候，这些“import”可以作为提示，让他们明白你的代码用到了哪些功能。
+    --argv 是所谓的“参数变量(argument variable)”，是一个非常标准的编程术语。在其他的编程语言里你也可以看到它。这个变量包含了你传递给 Python 的参数。通过后面的练习你将对它有更多的了解。
+    --argv “解包(unpack)”，将所有参数放到同一个变量下面，我们将每个参数赋予一个变量名： script, first, second, 以及 third。这也许看上去有些奇怪, 不过”解包”可能是最好的描述方式了。它的含义很简单：“把 argv 中的东西解包，将所有的参数依次赋予左边的变量名”。
+    --我们将把这些我们导入(import)进来的功能称作模组。也有人将它们称作“库(libraries)”，不过我们还是叫它们模组吧。
+    --命令行参数是字符串，就算你在命令行输入数字，你也需要用 int() 把它先转成数字，和在 input()里一样。
+    --三个引号 """ 可以定义多行字符串，而 % 是字符串的格式化工具。
 }
 触摸桌格斗游戏头脑风暴{
     街霸格斗王
@@ -43,7 +55,7 @@ python{
 营销方案ppt，文案修改，配图
 --
 管理端方案{
-	//创建店面的链接错误
+    //创建店面的链接错误
     商家[1]{
         查
             //商家ID
