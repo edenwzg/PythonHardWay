@@ -17,5 +17,4 @@ We'll be able to type as much as we like.
 Even 4 lines if we want, or 5, or 6.
 """
 
-# 多行注释第一个"""必须在一行的行首
-# 用%r输出\n会按照写出来的方式（或者近似方式）打印，它是用来debug的原始格式。
+
