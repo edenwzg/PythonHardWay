@@ -13,6 +13,12 @@ git add
 git status
 git commit -m "Describe Text"
 }
+Mathematics{
+    正方形四周每边长 = a
+    面积计算公式：S = a * a
+    周长计算公式：C = 4 * a
+    对角线长计算公式：sqrt(2) * a
+}
 error{
     SyntaxError: invalid syntax
         from 写成 form 
