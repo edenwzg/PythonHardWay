@@ -26,7 +26,6 @@ Sublime
     error
         每个设置之间用逗号间隔
         Sublime 3 的默认设置修改不了，必须复制到旁边的user设置里
-        
 python
     HardWay
         多行注释第一个"""必须在一行的行首"""
