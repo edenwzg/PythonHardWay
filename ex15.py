@@ -30,5 +30,5 @@ file_again = input("> ")
 txt_again = open(file_again)
 # 再次通过read() 方法 读取文件内容，并输出
 print(txt_again.read())
-# 再次关闭文件
+# 再次关闭文件，并写入刷新文件
 txt_again.close()
