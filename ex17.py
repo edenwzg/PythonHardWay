@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 print("=================================")
 
-from sys import argv as
+from sys import argv
 from os.path import exists
 
 script, from_file, to_file = argv

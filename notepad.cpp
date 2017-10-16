@@ -10,7 +10,7 @@ git
 PowerShell
     在C盘创建一个 copy.txt 的文件 New-Item c:\copy.txt -type file
     在C盘创建一个 Directory 的目录 New-Item c:\Directory -type Directory
-    查看 copy.txt 的文件内容 cat copy.txt
+    查看 copy.txt 的文件内容 cat copy.txt 或者 type copy.txt
 Mathematics
     {2017-10-13}
     正方形四周每边长 = a
@@ -66,6 +66,13 @@ python
         ｛2017-10-14｝
         除非对精确度没什么要求，否则尽量避开用round()函数。
         对浮点数精度要求如果很高的话，用decimal模块。
+
+        {2017-10-16}
+        from os.path import exists
+        exists() 这个函数将文件名字符串作为参数，如果文件存在的话，它将返回 True，否则将返回 False
+        read() 一旦运行， 文件就会被读到结尾并且被 close 掉
+        *args 的 * 的功能是告诉 python 让它把函数的所有参数都接受进来，然后放到名字叫 args 的列表中去。和 argv 差不多，只不过前者是用在函数上面。一般不常用。
+        函数的参数的个数限制取决于 Python 的版本和操作系统，不过就算有限，限值也是很大的。实际应用中，5 个参数就不少了，再多就会让人头疼了。
     数学计算
         {2017-10-13}
         17 ** 0.5               // 平方根
