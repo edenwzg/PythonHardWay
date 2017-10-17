@@ -1,5 +1,4 @@
-git
-    git@github.com:edenwzg/PythonHardWay.git
+git git@github.com:edenwzg/PythonHardWay.git
     git config --global user.email "you@example.com"
     git config --global user.name "Your Name"
     ssh-keygen -t rsa -C "youremail@example.com"
@@ -42,60 +41,50 @@ Sublime
     Sublime3 的默认设置修改不了，必须复制到旁边的user设置里
 python
     HardWay
-        多行注释第一个"""必须在一行的行首"""
-        用%r输出\n 会按照写出来的方式（或者近似方式）打印，它是用来debug的原始格式。
-        practice: 将转义序列和和石化字符串组合到一起，创建一种更复杂的格式。
-        注意到我在每行 print 后面加了个逗号(comma) , 了吧？这样的话 print就不会输出新行符而结束这一行跑到下一行去了。
-        python3.x系列不再有 raw_input 函数。3.x中 input 和从前的 raw_input 等效
-        打印出来后我的字符串前面有个 u ，像 u'35' 这样。 它表示 Python 告诉你你的字符串是 unicode。使用 %s 就一切正常了。 
-        python中pydoc模块可以从python代码中获取docstring，然后生成帮助信息。python -m pydoc docstring
-        写成 print "How old are you?" , input() 为什么不行?你觉得可以，但 Python 不这么认为。我唯一能给你的答案是：这样就是不行。
-        python -m pydoc -w atexit   //在当前目录创建atexit.html，生成HTML输出
-        python -m pydoc -p 5000    //启动一个Web服务器监听http://localhost:5000/在线浏览帮助文档
-        Python 不会一下子将它所有的功能给你，而是让你需要什么就调用什么。这样可以让你的程序保持精简，而后面的程序员看到你的代码的时候，这些“import”可以作为提示，让他们明白你的代码用到了哪些功能。
-        argv 是所谓的“参数变量(argument variable)”，是一个非常标准的编程术语。在其他的编程语言里你也可以看到它。这个变量包含了你传递给 Python 的参数。通过后面的练习你将对它有更多的了解。
-        argv “解包(unpack)”，将所有参数放到同一个变量下面，我们将每个参数赋予一个变量名： script, first, second, 以及 third。这也许看上去有些奇怪, 不过”解包”可能是最好的描述方式了。它的含义很简单：“把 argv 中的东西解包，将所有的参数依次赋予左边的变量名”。
-        我们将把这些我们导入(import)进来的功能称作模组。也有人将它们称作“库(libraries)”，不过我们还是叫它们模组吧。
-        命令行参数是字符串，就算你在命令行输入数字，你也需要用 int() 把它先转成数字，和在 input()里一样。
-        三个引号 """ 可以定义多行字符串，而 % 是字符串的格式化工具 """。  
-        类里面定义的是方法，第一个参数是self，需要实例化类以后调用。 
-        直接定义的是函数，可以在py文件的任何地方随意调用。
-        txt = open(filename) 返回的是文件的内容吗？不是，它返回的是一个叫做“file object”的东西，你可以把它想象成一个磁带机或者 DVD 机。你可以随意访问内容的任意位置，并且去读取这些内容，不过这个 object 本身并不是它的内容。 
-        from sys import argv 是什么意思？sys 是一个代码库，这句话的意思是从库里取出 argv 这个功能来，供我使用。
-        为什么打开了两次文件没有报错？Python 不会限制你打开文件的次数，事实上有时候多次打开同一个文件是一件必须的事情。
-        
-        {2017-10-13}
-        import os  #导入os模块
-        os.getcwd() #获取当前路径  
-        os.chdir("D:\\test") #跳到目标路径下
-        如果你用 open(file,'w') 模式打开文件，那么 .truncate() 不是必须的，因为 open(file,'w') 会"truncating the file first"。
-        file.write("stuff") 在 file.close() 后才会真正写入文件内容。
-
-        ｛2017-10-14｝
-        除非对精确度没什么要求，否则尽量避开用round()函数。
-        对浮点数精度要求如果很高的话，用decimal模块。
-
-        {2017-10-16}
-        from os.path import exists
-        exists() 这个函数将文件名字符串作为参数，如果文件存在的话，它将返回 True，否则将返回 False
+        多行注释第一个"""必须在一行的行首"""       
+        print() 用于输出内容
+            print("text", end=''), end=''用于指定text后面的字符，默认是 \n 会在一行的结尾有一个 \n
+            打印出来后我的字符串前面有个 u ，像 u'35' 这样。 它表示 Python 告诉你你的字符串是 unicode。使用 %s 就一切正常了。 
+            用%r输出会按照写出来的方式（或者近似方式）打印，它是用来debug的原始格式。
+            三个引号 """ 可以定义多行字符串，而 % 是字符串的格式化工具 """。  
+        'python -m pydoc docstring' pydoc模块可以从python代码中获取docstring，然后生成帮助信息。
+            python -m pydoc -w atexit   //在当前目录创建atexit.html，生成HTML输出
+            python -m pydoc -p 5000    //启动一个Web服务器监听http://localhost:5000/在线浏览帮助文档
+            命令行参数是字符串，就算你在命令行输入数字，你也需要用 int() 把它先转成数字。
+        input() 用于获取用户输入
+            python3.x系列不再有 raw_input 函数。3.x中 input 和从前的 raw_input 等效
+        open(file_name) 返回一个 file_obj，这个 object 本身并不是文件的内容。 
+            可以把它想象成一个磁带机。可以随意访问内容的任意位置，并且它有一个用来读取数据的“磁头”，你可以通过这个“磁头”来操作文件。 
+            Python 不会限制你打开文件的次数，事实上有时候多次打开同一个文件是一件必须的事情。
+            file_obj.truncate([size]) 方法用于从文件的首行首字符开始截断，截断文件为 size 个字符，无 size 表示从当前位置截断；截断之后后面的所有字符被删除。
+            如果你用 open(file_name,'w') 模式打开文件，那么 file_obj.truncate() 不是必须的，因为 open(file_name,'w') 会"truncating the file first"。
+        'import' 用于从外部导入其他python功能模块，也可以作为提示，在读代码时了解代码用到了哪些功能。我们把这些导入的功能称作模组。也有人称作“库(libraries)”。
+            'from sys import argv' sys 是一个代码库，这句话的意思是从库里取出 argv 这个功能来，供我使用。
+                argv 参数变量(argument variable)，是一个非常标准的编程术语。在其他的编程语言里你也可以看到它。这个变量包含了你传递给 Python 的参数。
+                argv 解包(unpack)，将运行时的所有参数放到 argv 里。它的含义很简单：“把 argv 中的东西解包，将所有的参数依次赋予左边的变量名”。
+            'import os' 导入os模块
+                os.getcwd() #获取当前路径
+                os.chdir("D:\\test") #跳到目标路径下 
+            'from os.path import exists' 
+                exists() 这个函数将文件名字符串作为参数，如果文件存在的话，它将返回 True，否则将返回 False
         read() 一旦运行， 文件就会被读到结尾并且被 close 掉
-        *args 的 * 的功能是告诉 python 让它把函数的所有参数都接受进来，然后放到名字叫 args 的列表中去。和 argv 差不多，只不过前者是用在函数上面。一般不常用。
-        函数的参数的个数限制取决于 Python 的版本和操作系统，不过就算有限，限值也是很大的。实际应用中，5 个参数就不少了，再多就会让人头疼了。
-
-        {2017-10-17}
+        write()
+            file.write("stuff") 在 file.close() 后才会真正写入文件内容。
+        round() 除非对精确度没什么要求,否则尽量避开用 round() 函数。对浮点数精度要求如果很高的话，用 decimal 模块。
+        'def function(*args)' 中的 * 的功能是把函数的所有参数都接受进来，然后放到名字叫 args 的列表中去。和 argv 差不多，只不过前者是用在函数上面，但一般不常用。
+            函数的参数的个数限制取决于 Python 的版本和操作系统，不过就算有限，限值也是很大的。实际应用中，5 个参数就不少了，再多就会让人头疼了。
         seek() 方法用于移动文件读取指针到指定位置。该函数没有返回值。
-            fileObject.seek(offset[, whence])
+            file_obj.seek(offset[, whence])
             offset -- 开始的偏移量，也就是代表需要移动偏移的字节数
             whence：可选，默认值为 0。给offset参数一个定义，表示要从哪个位置开始偏移；
                 0代表从文件开头开始算起，
                 1代表从当前位置开始算起，
-                2代表从文件末尾算起。
-        Python 里的文件就和老式的磁带机差不多。它有一个用来读取数据的“磁头”，你可以通过这个“磁头”来操作文件。                
+                2代表从文件末尾算起。   
+            函数的处理对象是字节而非行，所以 seek(0) 只是转到文件的 0 byte，也就是第一个 byte 的位置。            
         readline() 里边的代码会扫描文件的每一个字节，直到找到一个 \n 为止，然后它停止读取文件，并且返回此前的文件内容。
-        readline() 函数返回的内容中包含 \n
-        print() 默认也会在一行的结尾有一个 \n
-        seek() 函数的处理对象是字节而非行，所以 seek(0) 只是转到文件的 0 byte，也就是第一个 byte 的位置。
-        文件对象会记录每次调用 readline() 后的读取位置。
+            函数返回的内容中包含 \n
+            file_obj.readline() 文件对象会记录每次调用 readline() 后的读取位置。
+        pass 就是什么也不做，只是为了防止语法错误。
 
     数学计算
         {2017-10-13}
