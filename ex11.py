@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+
+from __future__ import print_function
 print("========================================")
 # 在print()后面加一个逗号，这样print()就不会输出新的行符。
 print("How old are you?", end = ' ')

@@ -1,28 +1,28 @@
-# -*- codint: utf-8 -*-
-
-print("=============================================")
+# -*- coding: utf-8 -*-
+from __future__ import print_function
+print ("=============================================")
 # 输出一句话“马丽有一只小羊”
-print("Mary had a little lamb")
+print ("Mary had a little lamb")
 # 输出“它的羊毛像雪一样白”
-print("Its fleece was white as %s." % 'snow')
+print ("Its fleece was white as %s." % 'snow')
 # 输出“无论玛丽去哪里”
-print("And everywhere that Mary went.")
+print ("And everywhere that Mary went.")
 # 输出10个“.”
-print("." * 10) # what'd that do?
+print ("." * 10 ) # what'd that do?
 
 # 12个字符串变量，每个变量存储1个字符
-end1 = "C"
-end2 = "h"
-end3 = "e"
-end4 = "e"
-end5 = "s"
-end6 = "e"
-end7 = "B"
-end8 = "u"
-end9 = "r"
-end10 = "g"
-end11 = "e"
-end12 = "r"
+end1 = ("C")
+end2 = ("h")
+end3 = ("e")
+end4 = ("e")
+end5 = ("s")
+end6 = ("e")
+end7 = ("B")
+end8 = ("u")
+end9 = ("r")
+end10 = ("g")
+end11 = ("e")
+end12 = ("r")
 
 # watch that comma at the end. try removing it to see what happens
 # 通过连接6个字符串，组成一个单词"Cheese", 
