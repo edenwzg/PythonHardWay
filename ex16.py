@@ -14,7 +14,7 @@ print("If you don't want that, hit CTRL-C (^c).")
 print("If you do want that, hit RETURN.")
 
 # 输出问号，提示用户输入内容
-input("?")
+raw_input("?")
 
 # 输出提示“打开文件”
 print("Opening the file...")
@@ -30,9 +30,9 @@ target.truncate()
 print("Now I'm going to ask you for three lines.")
 
 # 提示用户并要求其输入三行内容，并保存在3个变量中
-line1 = input("line 1: ")
-line2 = input("line 2: ")
-line3 = input("line 3: ")
+line1 = raw_input("line 1: ")
+line2 = raw_input("line 2: ")
+line3 = raw_input("line 3: ")
 
 # 输出提示“我将要把它们写入文件”
 print("I'm goint to write these to the file.")
