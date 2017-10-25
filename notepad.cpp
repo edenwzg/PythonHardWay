@@ -4,12 +4,15 @@ git
     git config --global user.name "Your Name"
     ssh-keygen -t rsa -C "youremail@example.com"
     git clone https://github.com/vnpy/vnpy.git
-    'add'
-        git add -A  // 提交所有变化
-        git add -u  // 提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)
-        git add .   // 提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
+    'stage'
+        git stage -A  // 提交所有变化
+        git stage -u  // 提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)
+        git stage .   // 提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
     git status
     git commit -m "Describe Text"
+    checkout 此命令是最常用的命令之一，同时也是一个很危险的命令，因为这条命令会重写工作区。
+        git checkout //这条命令把 当前目录所有修改的文件 从HEAD中签出并且把它恢复成未修改时的样子。注意：在使用 git checkout 时，如果其对应的文件被修改过，那么该修改会被覆盖掉。
+
 PowerShell
     在C盘创建一个 copy.txt 的文件 New-Item c:\copy.txt -type file
     在C盘创建一个 Directory 的目录 New-Item c:\Directory -type Directory
@@ -90,6 +93,16 @@ python
         pass 就是什么也不做，只是为了防止语法错误。
         '__future__' Python 3.x 引入了一些与 Python 2 不兼容的关键字和特性，在 Python 2 中，可以通过内置的 __future__ 模块导入这些新内容。如果希望在 Python 2 环境下写的代码也可以在 Python 3.x 中运行，建议使用 __future__ 模块，它必须放在文件的开头。
             'from __future__ import print_function' 在 python 2 中使用 print('xxx',end = ' ') 格式的 print() 函数
+        range(n1, n2, setp) 函数会从第一个数到最后一个，但不包含最后一个数字。所以它在n2-1的时候就停止了。这种含首不含尾的方式是循环中极其常见的一种用法。setp 指定两个数之间相隔的步幅。
+        elements.append(element) 的功能是在列表的末尾追加元素。
+        for-loop 
+            在循环开始时就定义了循环变量，当然每次循环它都会被重新定义一次
+            for-loop 只能对一些东西的集合进行循环，while-loop 可以针对任意对象进行循环。
+            一般任务用 for-loop 更加容易一些。
+        while-loop 检查布尔表达式的真假，执行下面的代码，完后再回到 while 所在位置，如此重复进行，直到 while 表达式为 False 为止。
+            尽量少用 while-loop，大部分时候使用 for-loop 是更好的选择。
+            重复检查你的 while 语句，确定测试的布尔表达式最终会变为 False。
+            如果不确定，就在 while-loop 的结尾打印出测试值，看看它的变化。            
 
     数学计算
         {2017-10-13}
