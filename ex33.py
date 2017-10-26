@@ -16,7 +16,7 @@ def add_element(ele, bufu):
 	return numbers
 
 numbers = add_element(int(element), int(bufu)) 
-12354
+
 print("The numbers:")
 for num in numbers:
 	print(num)
