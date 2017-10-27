@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+# coding=gbk
 
 from sys import exit
 print("=================================")
@@ -60,7 +61,7 @@ def dead(why):
 	exit(0)
 
 def start():
-	print("You are in a dark room.")
+	print(u"你在一个漆黑的房间里。")
 	print("There is a door to your right and left.")
 	print("Which one do you take?")
 
