@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
 # creat a mapping of state to abbreviation
-states = [
+states = {
 	'Oregon': 'OR',
 	'Florida': 'FL',
 	'California': 'CA',
 	'New York': 'NY',
 	'Michigan': 'MI'
-]
+}
 
 # create a basic set of states and some cities in them
 cities = {
