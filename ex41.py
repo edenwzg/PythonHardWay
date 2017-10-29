@@ -1,39 +1,23 @@
+import random
+from urllib import urlopen
+import sys
 
-class TheThing(object):
-	"""docstring for TheThing"""
-	def __init__(self):
-		self.number = 0
+WORD_URL = "http://learncodethehardway.org/words.txt"
+WORDS = []
 
-	def some_function(self):
-		print("I got called.")
+PHRASES = {
+	"class %%%(%%%):":
+		"Make a class name %%% that is-a %%%.",
+	"class %%%(object):\n\tdef __init__(self, ***)":
+		"class %%% has-a __init__ that takes self and *** parameters.",
+	"class %%%(object):\n\tdef ***(self, @@@)":
+		"class %%% has-a function name *** that takes self and @@@ parameters.",
+	"*** = %%%()":
+		"Set *** to an instance of class %%%.",
+	"***.***(@@@)":
+		"From *** get the *** function, and call it with paramters self, @@@.",
+	"***.*** = '***'":
+		"From *** get the *** attribute an dset it to '***'."
+}
 
-	def add_me_up(self, more):
-		self.number += more
-		return self.number
-
-# two different things
-a = TheThing()
-b = TheThing()
-
-a.some_function()
-b.some_function()
-
-print a.add_me_up(20)
-print b.add_me_up(30)
-
-print a.number
-print b.number
-
-# Study this. This is how you pass a variable
-# from one class to another. You will need this.
-class TheMultiplier(object):
-	"""docstring for TheMultiplier"""
-	def __init__(self, base):
-		self.base = base
-
-	def do_it(self, m):
-		return m * self.base
-
-x = TheMultiplier(a.number)
-print x.do_it(b.number)
-			
+# do they want to drill phrases first
