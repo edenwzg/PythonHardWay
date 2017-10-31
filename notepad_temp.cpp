@@ -41,7 +41,7 @@ IPython
 	%run name.py
 	%run -d name.py // debug mode
 		ipdb> // ipdb> prompt
-			b x(line) set break point
-			c continue
-			s step into
-			n next
+			b x //(line) set break point
+			c //continue
+			s //step into
+			n //next
