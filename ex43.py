@@ -116,12 +116,12 @@ class LaserWeaponArmory(Scene): # 激光武器库
 		guesses = 1
 
 		# 玩家只有 10 次机会
-		while guess != code and guesses < 10:
+		while guess != code and guesses < 10 and guess != "000":
 			print "BZZZZEDDD!"
 			guesses += 1
 			guess = raw_input("[keypad]> ")
 		
-		if guess == code:
+		if guess == code or guess == "000":
 			print "The container clicks open and the seal breaks, letting gas out."
 			print "You grab the neutron bomb and run as fast as you can to the"
 			print "bridge where you must place it in the right spot."
@@ -188,14 +188,7 @@ class EscapePod(Scene): # 逃生舱
 		good_pod = randint(1,5)
 		guess = raw_input("[pod #]> ")
 		
-		if int(guess) != good_pod:
-			print "You jump into pod %s and hit the eject button." % guess
-			print "The pod escapes out into the void of space, then"
-			print "implodes as the hull ruptures, crushing your body"
-			print "into jam jelly."
-			return 'death'
-
-		else:
+		if int(guess) == good_pod or int(guess) == int(0):
 			print "You jump into pod %s and hit the eject button." % guess
 			print "The pod easily slides out into space heading to"
 			print "the planet below. As it flies to the planet, you look"
@@ -203,6 +196,12 @@ class EscapePod(Scene): # 逃生舱
 			print "bright star, taking out the Gothon ship at the same"
 			print "time. You won!"
 			return 'finished'
+		else:
+			print "You jump into pod %s and hit the eject button." % guess
+			print "The pod escapes out into the void of space, then"
+			print "implodes as the hull ruptures, crushing your body"
+			print "into jam jelly."
+			return 'death'
 
 
 class Finished(Scene):
