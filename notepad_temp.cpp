@@ -36,6 +36,11 @@ Python
 			 random.shuffle(x, random=None)
 			 	Optional arg random is a 0-argument function returning a random
 			 	float in [0.0, 1.0); by default, the standard random.random.
+	pygame
+		import pygame
+		form pygame.locals import *
+		pygame.init()
+		pygame.display.set_mode((640, 480), 0, 32)
 
 IPython
 	%run name.py
