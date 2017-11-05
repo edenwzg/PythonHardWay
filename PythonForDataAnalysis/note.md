@@ -35,17 +35,87 @@
     SciPy                                       # 是一组专门解决科学计算中各种标准问题域的包的集合。
 
 
-### note point
+### collections
+    namedtuple      # namedtuple可以很方便地定义一种数据类型，它具备tuple的不变性，又可以根据属性来引用。
+    deque           # list是线性存储，数据量大的时候，插入和删除效率很低。deque是为了高效实现插入和删除操作的双向列表，适合用于队列和栈。
+    defaultdict     # 使用dict时，如果引用的Key不存在，就会抛出KeyError。如果希望key不存在时，返回一个默认值，就可以用defaultdict。
+    OrderedDict     # 使用dict时，Key是无序的。在对dict做迭代时，我们无法确定Key的顺序。OrderedDict的Key会按照插入的顺序排列，不是Key本身排序。
+    Counter         # 是一个简单的计数器，例如，统计字符出现的个数
+
+
+### IPython
+    about IPython
+        execute explore & edit-complie-run
+        输出的可读性更好，和 print 的普通输出形式有着显著区别。
+        IPython 和主流编辑器、IDE 之间的交互。
+    Tab 
+        当前命名空间中任何与已输入的字符串相匹配的变量（对象、函数）都会被找出来。
+        甚至是文件路径（/）
+        函数关键字参数
+    object introspection (内省)
+        在对象前面或后面加上一个 ？ 就可以将有关该对象的一些通用信息显示出来。
+        如果该对象是一个函数或实例方法，则其 docstring (如果有的话) 也会被显示出来。使用 ?? 还将显示其源代码。
+        ? 还可以搜索 IPhone 命名空间，再配以通配符 * 即可显示出所有与之相匹配的名称。
+    Execute the code in the clipboard
+        使用 Ctrl-V 的方式粘贴代码是模拟在 Python 中逐行输入代码，换行符会被处理为 <return> ，我们应该使用 %paste 或 %cpaste 这两个魔术函数。
+        %paste 可以承载剪贴板中的一切文本，并在 shell 中以整体形式自动执行。
+        %cpaste 在最终执行之前，想粘贴多少代码就粘贴多少。最终使用 -- 加回车，以整体形式手动执行。Ctrl-C 可以终止 %cpaste 提示符。
+    Shortcuts
+        Ctrl-P 或上箭头     # 向后搜索历史中以当前输入的文本开头的命令
+        Ctrl-N 或下箭头     # 向前搜索历史中以当前输入的文本开头的命令
+        Ctrl-R              # 按行读取的方向历史搜索（部分匹配）
+        Ctrl-V              # 从剪贴板粘贴文本
+        Ctrl-C              # 终止当前正在执行的代码
+        Ctrl-A              # 将光标移动到行首
+        Ctrl-E              # 将光标移动到行尾
+        Ctrl-K              # 删除光标从开始至行尾的文本
+        Ctrl-U              # 清楚当前行的所有文本
+        Ctrl-F              # 将光标向前移动一个字符
+        Ctrl-B              # 将光标向后移动一个字符
+        Ctrl-L              # 清屏
+    %run
+        脚本是在一个命名空间中运行的，所以其行为应在跟在标准命令环境中执行时一样。此后，该文件中定义的全部变量就可以在当前 IPython shell 中访问了。
+        如果希望脚本能够访问在交互式 IPython 命名空间(interactive)中定义的变量，就应该使用 %run -i
+        任何代码在执行时，只要按下"Ctrl-C"，就会引发一个 KeyboardInterrupt。除一些非常特殊的情况之外，绝大部分 Python 程序都将立即停止执行。
+        当 Python 代码已经调用了某个已编译的扩展模块时，"Ctrl-C"将无法立即停止执行。要么等待 Python 解释器重获控制权，要么只能任务管理器强制终止。
+    Exception and trace
+        如果 %run 发生了异常，IPython 默认会输出整个调用traceback(栈跟踪)，其中还会附上调用栈各点附近的上下文参考。
+        %xmode 可以控制上下文代码参考的数量。
+        post-mortem debugging (事后调试)
+    Magic Command
+        ?           # See the help
+        %quickref   # Show a quick reference sheet
+        %magic      # Pint information about the magic function system
+        %debug      # Activate the interactive debugger.
+        %hist       # Alias for '%history'.
+        %pdb        # Control the automatic calling of the pdb intercative debugger.
+        %paste      # Paste & execute a pre-formatted code block from clipboard.
+        %cpaste     # Paste & execute a pre-formatted code block from clipboard.
+        %reset      # Resets the namescape by removing all names defined by the user.
+        %page       # Pretty print the objet and display it through a pager.
+        %run        # Run the named file inside IPython as a program.
+        %prun       # Run a statement through the python code profiler.
+        %time       # Time execution of a Python statement or expression.
+        %timeit     # Time execution of a Python statement or expression. Many times to perform.
+        %who        # Print all interactive variables, with some minimal formatting.
+        %whos       # Like %who, but gives some extra information about each variable.
+        %xdel       # Delete a variable, trying to clear it from anywhere that.
+    GUI console based on QT
+    matpoltlib & pylab mode
+
+
+
 
 
 
 ### code
     ''' get data form file '''
     path = "D:\\dirname\\filename.txt"          # save directory path
-    path = "D:/dirname/filename.txt"            # another way to save directory path 
+    path = "D:/dirname/filename.txt"            # another way to save directory path
     open(path).readline()                       # open a file hander and read a line
 
     ''' Convert JSON string to directory '''
+    import json
     records = [json.load(line) for line in open(path)]          # Iterating over an open file handle gets a sequence of rows。records is a list of dict.
     time_zone = [rec['tz'] for rec in records if 'tz' in rec]   # get time zone in list comprehension ,use if test to include 'tz' Key
 
@@ -79,7 +149,7 @@
     counts.most_common(10)
 
     ''' Count the time zone with pandas '''
-    form pandas import DataFrame, Series
+    from pandas import DataFrame, Series
     import pandas as pd
     import numpy as np
     # -------------------------------------     
