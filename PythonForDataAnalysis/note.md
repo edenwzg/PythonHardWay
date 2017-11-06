@@ -100,11 +100,43 @@
         %who        # Print all interactive variables, with some minimal formatting.
         %whos       # Like %who, but gives some extra information about each variable.
         %xdel       # Delete a variable, trying to clear it from anywhere that.
+        %logstart   # logging anywhere in a session
+        %logoff
+        %logon
+        %logstate
+        %logstop
     GUI console based on QT
+        ipython qtconsole --pylab=inline
     matpoltlib & pylab mode
-
-
-
+        标准 Python shell 中创建一个 matplotlib，GUI的事件循环会接管 Python 会话的控制权。
+        ipython --pylab 标记来集成 matplotlib
+    搜索并重用历史命令
+        只需要很少的按键次数即可搜索、自动完成并执行之前已经执行过的命令。
+        在会话间持久化命令历史。
+        将输入、输出历史记录到日志文件。
+    输入和输出变量
+        Ipython 会将输入和输出的引用保存在一些特殊的变量中。最近两个输出结果分别保存在 _ 和 __ 中。
+        _27 第27行的输出变量
+        _i27 第27行的输入变量，由于输入变量是字符串，因此可以用 exec 关键字重新执行。
+        在处理非常大的数据集时，一定要注意 IPython 的输入输出历史，它会导致所有的对象引用都无法被垃圾收集器处理（即施放内存），对于这种情况，谨慎地使用 %xdel 和 %reset 将有助于避免出现内存方面的问题。
+    与操作系统交互
+        在 IPython 中，以感叹号开头的命令行表示气候的所有内容需要在系统 shell 中执行。
+        将 shell 命令的控制台输出存放到变量中： ip_info = !ipconfig
+        使用当前环境中定义的 Python 值。 只需在变量名钱加上 $ 即可： ！ls $var_name
+        ！cmd            # Run cells with cmd in a subprocess.
+        output = !cmd args
+        %alias
+        %bookmark        # Manage IPython's bookmark system. 与别名的区别在于，他们会被自动持久化。
+            %bookmark-l  # list all bookmarks 
+        %cd
+        %pwd
+        %pushd
+        %popd
+        %dirs
+        %dhist
+        %env
+        %alias      # Define an alias for a system command.
+    软件开发工具
 
 
 
