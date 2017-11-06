@@ -48,6 +48,7 @@
         execute explore & edit-complie-run
         输出的可读性更好，和 print 的普通输出形式有着显著区别。
         IPython 和主流编辑器、IDE 之间的交互。
+        我们非常有必要了解 Python 标准库、NumPy、pands 以及本书中所用到的其他库的性能特点。在大型数据分析应用程序中，这些不起眼的毫秒数是会不断累积的。
     Tab 
         当前命名空间中任何与已输入的字符串相匹配的变量（对象、函数）都会被找出来。
         甚至是文件路径（/）
@@ -94,9 +95,6 @@
         %reset      # Resets the namescape by removing all names defined by the user.
         %page       # Pretty print the objet and display it through a pager.
         %run        # Run the named file inside IPython as a program.
-        %prun       # Run a statement through the python code profiler.
-        %time       # Time execution of a Python statement or expression.
-        %timeit     # Time execution of a Python statement or expression. Many times to perform.
         %who        # Print all interactive variables, with some minimal formatting.
         %whos       # Like %who, but gives some extra information about each variable.
         %xdel       # Delete a variable, trying to clear it from anywhere that.
@@ -123,11 +121,11 @@
         在 IPython 中，以感叹号开头的命令行表示气候的所有内容需要在系统 shell 中执行。
         将 shell 命令的控制台输出存放到变量中： ip_info = !ipconfig
         使用当前环境中定义的 Python 值。 只需在变量名钱加上 $ 即可： ！ls $var_name
-        ！cmd            # Run cells with cmd in a subprocess.
+        !cmd                # Run cells with cmd in a subprocess.
         output = !cmd args
         %alias
-        %bookmark        # Manage IPython's bookmark system. 与别名的区别在于，他们会被自动持久化。
-            %bookmark-l  # list all bookmarks 
+        %bookmark           # Manage IPython's bookmark system. 与别名的区别在于，他们会被自动持久化。
+            %bookmark-l     # list all bookmarks 
         %cd
         %pwd
         %pushd
@@ -135,9 +133,38 @@
         %dirs
         %dhist
         %env
-        %alias      # Define an alias for a system command.
-    软件开发工具
-
+        %alias              # Define an alias for a system command.
+    交互式调试器
+        调试代码的最佳时机就是错误刚刚发生时。在发生异常之后马上输入 %debug 命令，将会调用事后调试器，并直接跳转到引发异常的那个栈帧(stack frame)。
+        要想精通这个交互式调试器，必须经过大量的实践才行。在 IPython 中调试程序往往会带来更高的生产率。
+        输入 u(up) d(down) 即可在栈跟踪的各级别之间切换
+        %pdb                # Contro the automatic calling of the pdb interactive debugger.
+        (I)Python 调试器命令
+            h(elp)          # 显示命令列表
+            help            # 显示 command 的文档
+            c(ontinue)      # 恢复程序的执行
+            q(uit)          # 退出调试器，不再执行任何代码
+            b(reak) [number]# 在当前文件的第 [number] 行设置一个断点
+            b path/to/[file.py:number]   # 在指定文件的第 [number] 行设置一个断点
+            s(tep)          # 单步进入函数调试
+            n(ext)          # 执行当前行，并前进到当前级别的下一行
+            u(p)/d(own)     # 在函数调用栈中向上或向下移动
+            a(rgs)          # 显示当前函数的参数
+            debug [statmenet]   # 在新的（递归）调试器中调用语句 [statment]
+            l(ist) [statment]   # 显示当前行，以及当前栈级别上的上下文参考代码
+            w(here)         # 打印当前位置的完整栈跟踪（包括上下文参考代码） 
+        pdb.set_trace
+    性能分析
+        %time               # Time execution of a Python statement or expression.
+        %timeit             # Time execution of a Python statement or expression. Many times to perform.
+        %prun               # Run a statement through the python code profiler.
+        $run -p
+        %lprun
+    IPython HTML Notebook
+        基于 Web 技术的交互式计算文档格式。它已经称为一种非常棒的交互式计算工具，同时还是科研和教学的一种理想媒介。
+        它有一种基于 JSON 的文档格式 .ipynb, 使你可以轻松分享代码、输出结果以及图片等内容。将 .ipynb 文件发布到网上以供所有人查阅。
+        IPython Notebook 应用程序是一个运行于命令行上的轻量级服务器进程。
+        ipython notebook --pylab=inline 可以启动 IPython Notebook 服务器。
 
 
 ### code
@@ -191,7 +218,7 @@
     tz_counts[:10]                              # slices top 10 of 'tz'
     # -------------------------------------
     clean_tz = frame['tz'].fillna('Missing')    # 'na' is replace by 'Missing'
-    clean_tz = [clean_tz == ''] = 'Unknown'     # Use 'Unknown' to replace ''
+    clean_tz[clean_tz == ''] = 'Unknown'     # Use 'Unknown' to replace ''
     tz_counts = clean_tz.value_count()          # generate 'tz' value and count
     tz_counts[:10]                              # slices top 10 of 'tz'
     # -------------------------------------
