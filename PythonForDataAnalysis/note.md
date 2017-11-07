@@ -3,6 +3,48 @@
     粘合剂代码的执行时间通常是微不足道的。开发人员的精力几乎都是花在优化计算瓶颈上面的，有时更是直接转用更低级的语言（比如C）。
     Python 不仅适用于研究和原型构建，同时也适用于构建生产系统。
     Python 不适合要求延迟非常小的应用程序(如高频交易系统)，以及高并发、多线程的应用程序。因为 Python 有全局解释器锁（Global Interpreter Lock, GIL）
+    赋值（assignment）操作也叫做绑定（binding），因为我们其实是姜一个名称和一个对象绑定到一起。已经赋值的变量有时也被称为已绑定变量（bound variable）
+    当你将对象以参数的形式传入函数时，其实只是传入了一个引用而已，不会发生任何复制。因此，Python被称为是按引用传递的。也就是说，Python函数可以修改其参数内容。而某些其他语言则即支持按值传递（创建副本）又支持按引用传递。
+    python是一种强类型语言，也就是说，所有对象都有一个特定的类型（或类），隐式转换只在很明显的情况下才会发生。
+    Python 中的对象通常都既有属性（attribute，即存储在该对性爱那个“内部”的其他Python对象）有又方法（method，与该对象有关的能够访问其内部数据的函数）。它们都能通过 obj.attribute_name 这样的语法访问。
+    虽然本书没怎么用到 getattr 函数以及与之相关的 hasattr 和 setattr 函数，但是它们还是很实用的，尤其是在编写通用的、可复用的代码时。
+    一般来说，你可能不会关心对象的类型，而只是想直到它到底有没有某些方法或行为。比如说，只要一个对象实现了迭代器协议（iterator protocol），你就可以确认它是可迭代的。
+
+        def isiterable(obj):
+            try:
+                iter(obj)
+                return True
+            except TypeError:
+                return False
+
+        # 先检查对象是不是列表（或NumPy数组），如果不是，就将其转换成是。        
+        if not isinstance(x, list) and isiterable(x):
+            x = list(x)
+
+    from some_module import PI as pi, g as gf
+    list()      # new empty list
+    要判断两个引用是否指向同一个对象，可以使用 is 关键字。 注意， == 是判断值，这不是一回事。
+    is 和 is not 常常用于判断变量是否为 None， 因为None的实例只有一个。
+    大部分Python对象是可变的(mutable)，字符串和元组是不可变的(immutable)。————不能修改原内存块的数据。
+    仅仅因为“可以修改某个对象”并不代表“就该那么做”。这种行为在编程中也教做副作用(side effect)。
+    在编写一个函数时，任何副作用都应该通过该函数的文档或注释明确地告知用户。
+    即时可以使用可变对象，也应该尽量避免副作用且注重不变性（immutability）
+    str 字符串类型。Python 2.x 中只有 ASCII值，而Python 3 中则是Unicode
+    unicode Unicode 字符串类型
+    float 双精度（64位）浮点数。注意，这里没有专门的 double 类型。
+    int 有符号整数，其最大值由平台决定（是32位还是64位）。
+    long 任意精度的有符号整数，大的 int 值会被自动转换为 long。
+    fval = 6.78e-5 可以用科学计数法表示。
+    Python 3中，证书除法除不尽时就会产生一个浮点数。
+    但是在 Python 2.7 及一下版本中，添加一条语句到自定义模块的顶部即可  from __future__ import division
+
+
+
+
+
+
+buliting_function_or_method
+    isinstance(a, (type,type))
 
 
 ### The book purpos
