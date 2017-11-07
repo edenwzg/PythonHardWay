@@ -36,7 +36,71 @@
     long 任意精度的有符号整数，大的 int 值会被自动转换为 long。
     fval = 6.78e-5 可以用科学计数法表示。
     Python 3中，证书除法除不尽时就会产生一个浮点数。
-    但是在 Python 2.7 及一下版本中，添加一条语句到自定义模块的顶部即可  from __future__ import division
+    但是在 Python 2.7 及一下版本中，添加一条语句到自定义模块的顶部即可  from __future__ import division，或者使用 3 / float(2)
+    要得到C风格的整数除法（如果除不尽，就丢弃小数部分），使用除后圆整运算符 (//)
+    Python 字符串是不可变的。要修改字符串就只能创建一个新的。
+    许多Python对象都可以用 str() 函数转换为字符串。
+    由于字符串其实是一串字符序列，因此可以被当做某种序列类型（如列表、元组等）进行处理。如 [:3]
+    \ 是转义符（escape character）,也就是说，它可以用于指定特殊字符（\n 或 unicode字符）
+    在字符串最左边引号前加上r，它表示所有字符应该按照原本的样子进行解释。
+    字符串格式化要用实参替换这些格式化形参，需要用到二元运算符%以及由值组成的元组。
+    几乎所有内置的Python类型以及任何定义了__nonzero__魔术方法的类都能在if语句中被解释为True或False。Python中大部分对象都有真假概念。
+    要想直到某个对象究竟会被强制转换成哪个布尔值，使用bool()函数即可。
+    bool、int、str、float等类型也可用作将值转换成该类型的函数。
+    None是Python的空值类型。如果一个函数没有显示的返回值，则隐式返回None。
+    我们要牢记，None不是一个保留关键字，它只是NoneType的一个实例而已。
+    Python内置的datetime模块提供了datetime、date、time等类型。datetime类型是用的最多的，它合并了保存在date和time中的信息。
+    datetime 类型是用的最多的，它合并了保存在date和time中的信息。
+    from datetime import datetime, date, time
+    .date .time .strftime .strptime .replace 
+    两个datetime对象的差会产生一个datetime.datedelta类型
+    将一个timedelta加到一个datetime上会产生一个新的datetime
+    如果任何一个条件为True，则其后的elif或else块都不会执行。
+    对于用and或or组成的复合条件，各条件是按从左到右的顺序求值的，而且是短路型的。
+    for循环用于对集合（列表或元组）或迭代器进行迭代。
+    continue 关键字用于使用for循环提前进入下一次迭代。
+    break 关键字用于使for循环完全退出。
+    如果集合或迭代器中的元素是序列类型（比如元组或列表），那么还可以非常方便地蒋这些元素拆散成for语句中的多个变量
+    pass是Python中的“空操作”语句。它可以被用在那些没有任何功能的代码块中。由于Python是根据空白符划分代码块的，所有它的存在是很有必要的。
+    开发一个新功能时，尝尝会将pass用作代码中的占位符。
+    优雅地处理Python错误或异常是构建健壮程序的重要环节。
+
+    def attempt_float(x):
+        try:
+            return float(x)
+        '''
+        只需要编写一个由异常类组成的元组，即可捕获多个异常，
+        但是TypeError（输入的参数不是字符串或数值）可能意味着程序中存在合法性bug。
+        '''
+        except (TypeError, ValueErroe): 
+            return x
+
+    f = open(path, 'w')
+    try:
+        write_to_file(f)
+    except:
+        print 'Failed'      # except 后面加上异常类型可以只针对某种异常进行处理
+    else:
+        print 'Succeeded'   # 只在try块成功时执行
+    finally:
+        f.close()           # 文件句柄f适中都会被关闭
+
+    对于非常长的范围，建议使用xrange，其参数跟range一样，但它不会预先产生所有的值并将他们保存到列表中（可能会非常大），而是返回一个用于逐个产生整数的迭代器。
+    在Python 3中，range始终返回迭代器，因此也就没有必要使用xrange函数了。
+    value = true-expr if condition else false-expr 三元表达式。如果条件表达式非常复杂，就可能会牺牲可读性。
+    Python 的数据结构简单而强大。精通其用法是称为专家级Python程序员的关键环节。
+    
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -45,6 +109,7 @@
 
 buliting_function_or_method
     isinstance(a, (type,type))
+
 
 
 ### The book purpos
