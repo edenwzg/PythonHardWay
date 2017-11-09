@@ -127,6 +127,24 @@
     负数索引从序列的末尾开始切片。
     还可以在第二个冒号后面加上步长（step）。比如每个一位取出一个元素： seq[::2]
     上述方法使用-1是一个很巧妙的办法，它可以实现列表或元组的反序： seq[::-1]
+    enumerate 可以逐个返回序列的(i, value)元组
+    mapping = dict((value, i) for i, value in enumerate(some_list): 求取一个序列值映射到其所在位置的字典。
+    sorted函数可以将任何序列返回为一个新的有序列表，
+    sorted和set结合起来可以的到一个由序列中唯一元素组成的有序列表sorted(set('this is just some string'))
+    zip 用于将多个序列（列表、元组）中的元素“配对”，从而产生一个新的元组列表。
+    zip 可以接受任意数量的序列，最终的到的元组数量由最短的序列决定。
+    zip 最常见的用法是同时迭代多个序列，还可以结合enumerate一起使用
+    对于“已压缩的”（zipped）序列，zip还可以对该序列进行“解压”（unzip）。其实就是将一组行转换为一组列。
+    first_names, last_names = zip(*names)
+    函数调用中星号（*seq）相当于： (seq[0], seq[1],...,seq[len(seq)-1])
+    reversed 用于按逆序迭代序列中的元素： list(reversed(range(10)))
+
+    字典（dict）可算是Python中最重要的内置数据结构。
+    它更常见的名字是哈希映射（hash map）或相联数组（associative array）。
+    它是一种大小可变的键值对集，其中的键（key）和值（value）都是python对象。
+    创建字典的方式之一是：使用大括号{}并用冒号:分隔键和值。
+
+
 
 
 
