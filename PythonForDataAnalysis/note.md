@@ -3,90 +3,96 @@
     粘合剂代码的执行时间通常是微不足道的。开发人员的精力几乎都是花在优化计算瓶颈上面的，有时更是直接转用更低级的语言(比如C)。
     Python 不仅适用于研究和原型构建，同时也适用于构建生产系统。
     Python 不适合要求延迟非常小的应用程序(如高频交易系统)，以及高并发、多线程的应用程序。因为 Python 有全局解释器锁(Global Interpreter Lock, GIL)
-    赋值(assignment)操作也叫做绑定(binding)，因为我们其实是姜一个名称和一个对象绑定到一起。已经赋值的变量有时也被称为已绑定变量(bound variable)
-    当你将对象以参数的形式传入函数时，其实只是传入了一个引用而已，不会发生任何复制。因此，Python被称为是按引用传递的。也就是说，Python函数可以修改其参数内容。而某些其他语言则即支持按值传递(创建副本)又支持按引用传递。
-    python是一种强类型语言，也就是说，所有对象都有一个特定的类型(或类)，隐式转换只在很明显的情况下才会发生。
-    Python 中的对象通常都既有属性(attribute，即存储在该对性爱那个“内部”的其他Python对象)有又方法(method，与该对象有关的能够访问其内部数据的函数)。它们都能通过 obj.attribute_name 这样的语法访问。
-    虽然本书没怎么用到 getattr 函数以及与之相关的 hasattr 和 setattr 函数，但是它们还是很实用的，尤其是在编写通用的、可复用的代码时。
-    一般来说，你可能不会关心对象的类型，而只是想直到它到底有没有某些方法或行为。比如说，只要一个对象实现了迭代器协议(iterator protocol)，你就可以确认它是可迭代的。
-    <pre><code>
-        def isiterable(obj):
+
+    ##  basic
+        赋值(assignment)操作也叫做绑定(binding)，因为我们其实是姜一个名称和一个对象绑定到一起。已经赋值的变量有时也被称为已绑定变量(bound variable)
+        当你将对象以参数的形式传入函数时，其实只是传入了一个引用而已，不会发生任何复制。因此，Python被称为是按引用传递的。也就是说，Python函数可以修改其参数内容。而某些其他语言则即支持按值传递(创建副本)又支持按引用传递。
+        python是一种强类型语言，也就是说，所有对象都有一个特定的类型(或类)，隐式转换只在很明显的情况下才会发生。
+        Python 中的对象通常都既有属性(attribute，即存储在该对性爱那个“内部”的其他Python对象)有又方法(method，与该对象有关的能够访问其内部数据的函数)。它们都能通过 obj.attribute_name 这样的语法访问。
+        虽然本书没怎么用到 getattr 函数以及与之相关的 hasattr 和 setattr 函数，但是它们还是很实用的，尤其是在编写通用的、可复用的代码时。
+        一般来说，你可能不会关心对象的类型，而只是想直到它到底有没有某些方法或行为。比如说，只要一个对象实现了迭代器协议(iterator protocol)，你就可以确认它是可迭代的。
+        <pre><code>
+            def isiterable(obj):
+                try:
+                    iter(obj)
+                    return True
+                except TypeError:
+                    return False
+            # 先检查对象是不是列表(或NumPy数组)，如果不是，就将其转换成是。        
+            if not isinstance(x, list) and isiterable(x):
+                x = list(x)
+        </pre></code>
+        from some_module import PI as pi, g as gf
+        list()      # new empty list
+        要判断两个引用是否指向同一个对象，可以使用 is 关键字。 注意， == 是判断值，这不是一回事。
+        is 和 is not 常常用于判断变量是否为 None， 因为None的实例只有一个。
+        大部分Python对象是可变的(mutable)，字符串和元组是不可变的(immutable)。————不能修改原内存块的数据。
+        仅仅因为“可以修改某个对象”并不代表“就该那么做”。这种行为在编程中也教做副作用(side effect)。
+        在编写一个函数时，任何副作用都应该通过该函数的文档或注释明确地告知用户。
+        即时可以使用可变对象，也应该尽量避免副作用且注重不变性(immutability)
+    
+    ##  standard type
+        str 字符串类型。Python 2.x 中只有 ASCII值，而Python 3 中则是Unicode
+        unicode Unicode 字符串类型
+        float 双精度(64位)浮点数。注意，这里没有专门的 double 类型。
+        int 有符号整数，其最大值由平台决定(是32位还是64位)。
+        long 任意精度的有符号整数，大的 int 值会被自动转换为 long。
+        fval = 6.78e-5 可以用科学计数法表示。
+        Python 3中，证书除法除不尽时就会产生一个浮点数。
+        但是在 Python 2.7 及一下版本中，添加一条语句到自定义模块的顶部即可  from __future__ import division，或者使用 3 / float(2)
+        要得到C风格的整数除法(如果除不尽，就丢弃小数部分)，使用除后圆整运算符 (//)
+        Python 字符串是不可变的。要修改字符串就只能创建一个新的。
+        许多Python对象都可以用 str() 函数转换为字符串。
+        由于字符串其实是一串字符序列，因此可以被当做某种序列类型(如列表、元组等)进行处理。如 [:3]
+        \ 是转义符(escape character),也就是说，它可以用于指定特殊字符(\n 或 unicode字符)
+        在字符串最左边引号前加上r，它表示所有字符应该按照原本的样子进行解释。
+        字符串格式化要用实参替换这些格式化形参，需要用到二元运算符%以及由值组成的元组。
+        几乎所有内置的Python类型以及任何定义了__nonzero__魔术方法的类都能在if语句中被解释为True或False。Python中大部分对象都有真假概念。
+        要想直到某个对象究竟会被强制转换成哪个布尔值，使用bool()函数即可。
+        bool、int、str、float等类型也可用作将值转换成该类型的函数。
+        None是Python的空值类型。如果一个函数没有显示的返回值，则隐式返回None。
+        我们要牢记，None不是一个保留关键字，它只是NoneType的一个实例而已。
+        Python内置的datetime模块提供了datetime、date、time等类型。datetime类型是用的最多的，它合并了保存在date和time中的信息。
+        datetime 类型是用的最多的，它合并了保存在date和time中的信息。
+        from datetime import datetime, date, time
+        .date .time .strftime .strptime .replace 
+        两个datetime对象的差会产生一个datetime.datedelta类型
+        将一个timedelta加到一个datetime上会产生一个新的datetime
+    
+    ##  control flow
+        如果任何一个条件为True，则其后的elif或else块都不会执行。
+        对于用and或or组成的复合条件，各条件是按从左到右的顺序求值的，而且是短路型的。
+        for循环用于对集合(列表或元组)或迭代器进行迭代。
+        continue 关键字用于使用for循环提前进入下一次迭代。
+        break 关键字用于使for循环完全退出。
+        如果集合或迭代器中的元素是序列类型(比如元组或列表)，那么还可以非常方便地蒋这些元素拆散成for语句中的多个变量
+        pass是Python中的“空操作”语句。它可以被用在那些没有任何功能的代码块中。由于Python是根据空白符划分代码块的，所有它的存在是很有必要的。
+        开发一个新功能时，尝尝会将pass用作代码中的占位符。
+        优雅地处理Python错误或异常是构建健壮程序的重要环节。
+        <pre><code>
+            def attempt_float(x):
+                try:
+                    return float(x)
+                '''
+                只需要编写一个由异常类组成的元组，即可捕获多个异常，
+                但是TypeError(输入的参数不是字符串或数值)可能意味着程序中存在合法性bug。
+                '''
+                except (TypeError, ValueErroe): 
+                    return x
+            # -----------------
+            f = open(path, 'w')
             try:
-                iter(obj)
-                return True
-            except TypeError:
-                return False
-        # 先检查对象是不是列表(或NumPy数组)，如果不是，就将其转换成是。        
-        if not isinstance(x, list) and isiterable(x):
-            x = list(x)
-    </pre></code>
-    from some_module import PI as pi, g as gf
-    list()      # new empty list
-    要判断两个引用是否指向同一个对象，可以使用 is 关键字。 注意， == 是判断值，这不是一回事。
-    is 和 is not 常常用于判断变量是否为 None， 因为None的实例只有一个。
-    大部分Python对象是可变的(mutable)，字符串和元组是不可变的(immutable)。————不能修改原内存块的数据。
-    仅仅因为“可以修改某个对象”并不代表“就该那么做”。这种行为在编程中也教做副作用(side effect)。
-    在编写一个函数时，任何副作用都应该通过该函数的文档或注释明确地告知用户。
-    即时可以使用可变对象，也应该尽量避免副作用且注重不变性(immutability)
-    str 字符串类型。Python 2.x 中只有 ASCII值，而Python 3 中则是Unicode
-    unicode Unicode 字符串类型
-    float 双精度(64位)浮点数。注意，这里没有专门的 double 类型。
-    int 有符号整数，其最大值由平台决定(是32位还是64位)。
-    long 任意精度的有符号整数，大的 int 值会被自动转换为 long。
-    fval = 6.78e-5 可以用科学计数法表示。
-    Python 3中，证书除法除不尽时就会产生一个浮点数。
-    但是在 Python 2.7 及一下版本中，添加一条语句到自定义模块的顶部即可  from __future__ import division，或者使用 3 / float(2)
-    要得到C风格的整数除法(如果除不尽，就丢弃小数部分)，使用除后圆整运算符 (//)
-    Python 字符串是不可变的。要修改字符串就只能创建一个新的。
-    许多Python对象都可以用 str() 函数转换为字符串。
-    由于字符串其实是一串字符序列，因此可以被当做某种序列类型(如列表、元组等)进行处理。如 [:3]
-    \ 是转义符(escape character),也就是说，它可以用于指定特殊字符(\n 或 unicode字符)
-    在字符串最左边引号前加上r，它表示所有字符应该按照原本的样子进行解释。
-    字符串格式化要用实参替换这些格式化形参，需要用到二元运算符%以及由值组成的元组。
-    几乎所有内置的Python类型以及任何定义了__nonzero__魔术方法的类都能在if语句中被解释为True或False。Python中大部分对象都有真假概念。
-    要想直到某个对象究竟会被强制转换成哪个布尔值，使用bool()函数即可。
-    bool、int、str、float等类型也可用作将值转换成该类型的函数。
-    None是Python的空值类型。如果一个函数没有显示的返回值，则隐式返回None。
-    我们要牢记，None不是一个保留关键字，它只是NoneType的一个实例而已。
-    Python内置的datetime模块提供了datetime、date、time等类型。datetime类型是用的最多的，它合并了保存在date和time中的信息。
-    datetime 类型是用的最多的，它合并了保存在date和time中的信息。
-    from datetime import datetime, date, time
-    .date .time .strftime .strptime .replace 
-    两个datetime对象的差会产生一个datetime.datedelta类型
-    将一个timedelta加到一个datetime上会产生一个新的datetime
-    如果任何一个条件为True，则其后的elif或else块都不会执行。
-    对于用and或or组成的复合条件，各条件是按从左到右的顺序求值的，而且是短路型的。
-    for循环用于对集合(列表或元组)或迭代器进行迭代。
-    continue 关键字用于使用for循环提前进入下一次迭代。
-    break 关键字用于使for循环完全退出。
-    如果集合或迭代器中的元素是序列类型(比如元组或列表)，那么还可以非常方便地蒋这些元素拆散成for语句中的多个变量
-    pass是Python中的“空操作”语句。它可以被用在那些没有任何功能的代码块中。由于Python是根据空白符划分代码块的，所有它的存在是很有必要的。
-    开发一个新功能时，尝尝会将pass用作代码中的占位符。
-    优雅地处理Python错误或异常是构建健壮程序的重要环节。
-    <pre><code>
-        def attempt_float(x):
-            try:
-                return float(x)
-            '''
-            只需要编写一个由异常类组成的元组，即可捕获多个异常，
-            但是TypeError(输入的参数不是字符串或数值)可能意味着程序中存在合法性bug。
-            '''
-            except (TypeError, ValueErroe): 
-                return x
-        # -----------------
-        f = open(path, 'w')
-        try:
-            write_to_file(f)
-        except:
-            print 'Failed'      # except 后面加上异常类型可以只针对某种异常进行处理
-        else:
-            print 'Succeeded'   # 只在try块成功时执行
-        finally:
-            f.close()           # 文件句柄f适中都会被关闭
-    </pre></code>
-    对于非常长的范围，建议使用xrange，其参数跟range一样，但它不会预先产生所有的值并将他们保存到列表中(可能会非常大)，而是返回一个用于逐个产生整数的迭代器。
-    在Python 3中，range始终返回迭代器，因此也就没有必要使用xrange函数了。
-    value = true-expr if condition else false-expr 三元表达式。如果条件表达式非常复杂，就可能会牺牲可读性。
+                write_to_file(f)
+            except:
+                print 'Failed'      # except 后面加上异常类型可以只针对某种异常进行处理
+            else:
+                print 'Succeeded'   # 只在try块成功时执行
+            finally:
+                f.close()           # 文件句柄f适中都会被关闭
+        </pre></code>
+        对于非常长的范围，建议使用xrange，其参数跟range一样，但它不会预先产生所有的值并将他们保存到列表中(可能会非常大)，而是返回一个用于逐个产生整数的迭代器。
+        在Python 3中，range始终返回迭代器，因此也就没有必要使用xrange函数了。
+        value = true-expr if condition else false-expr 三元表达式。如果条件表达式非常复杂，就可能会牺牲可读性。
     
     ##  tuple
         Python 的数据结构简单而强大。精通其用法是称为专家级Python程序员的关键环节。
@@ -184,6 +190,49 @@
         通过hash函数,你可以判断某个对象是否是可哈希的(即可以用作字典的键): hash("string")
         如果要将列表当做键,最简单的办法就是将其转换成元组:dict1[tuple([1, 2, 3])] = 5
 
+    ##  set
+        集合(set)是由唯一元素组成的无序集.
+        可以将其看成是只有键而没有值的字典.
+        集合的创建方式有二:使用set()函数,或用大括号包起来的集合字面量.
+        集合支持各种数学集合运算,如并(或)(|)\交(与)(&)\差(-)以及对称差(异或)(^)等.
+        可以判断一个集合是否是另一个集合的子集(原集合包含于新集合)或超集(原集合包含新集合)
+            {1, 2, 3}.issubset(a_set)
+            a_set.issupperset({1, 2, 3})
+        不难看出,如果两个集合内容相等,则他们就是相等的: {1, 2, 3} == {3, 2, 1}
+
+    ##  comprehensions
+        列表推导式是最受欢迎的Python语言特性之一.
+        [expr for val in collection if condition]
+        <pre><code>
+            result = []
+            for val in collection:
+                if condition:
+                    result.append(expr)
+        </pre></code>
+        集合和字典的推导式是该思想的一种自然延伸,语法差不多.
+        dict_comp = {key-expr : value-expr for value in collection if codition}
+        set_comp = {expr for value in collection if condition}
+        <pre><code>
+            strings = ['a', 'as', 'bat', 'car', 'dove', 'python']
+            loc_mapping = {val : index for index, val in enumerate(strings)}
+        </pre></code>
+        <pre><code>
+            some_tuples = [(1,2,3), (4, 5, 6), (7, 8, 9)]
+            flattened = [x for tup in some_tuples for x in tup if x > 5]
+            # 用嵌套for循环实现上述功能
+            flattened = []
+            for tup in some_tuples:
+                for x in tup
+                    if x > 5:
+                        flattened.append(x)
+        </pre></code>
+        你可以编写任意多层的嵌套,但是如果嵌套超过两三层的话,可能你就得思考一下数据结构设计有没有问题了.
+        一定要注意上述内容和"列表推导式中的列表推导式"之间的区别:如下语句是正确的,但结果不同.
+        [[x for x in tup] for tup in some_tuples]
+
+    ##  function
+
+    ##  file
 
     
 
